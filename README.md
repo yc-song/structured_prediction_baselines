@@ -60,7 +60,7 @@ pip install wandb_allennlp
         export CUDA_DEVICE=-1
         wandb_allennlp --subcommand=train --config_file=model_configs/<path_to_config_file> --include-package=structured_prediction_baselines --wandb_run_name=<some_informative_name_for_run>  --wandb_project structured_prediction_baselines --wandb_entity score-based-learning --wandb_tags=baselines,as_reported
         ```
-
+ 
 4. Running hyperparameter sweeps
 
     1. Create a sweep using a sweep config file. See `sweep_configs` directory for examples. Refer sweeps documentation [here](https://docs.wandb.ai/sweeps).
