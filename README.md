@@ -60,13 +60,14 @@ pip install wandb_allennlp
         export CUDA_DEVICE=-1
         wandb_allennlp --subcommand=train --config_file=model_configs/<path_to_config_file> --include-package=structured_prediction_baselines --wandb_run_name=<some_informative_name_for_run>  --wandb_project structured_prediction_baselines --wandb_entity score-based-learning --wandb_tags=baselines,as_reported
         ```
- 
+	-> wandb_allennlp command not found가 뜨고, allennlp train-with-wandb model_configs/multilabel_classification/v2.5/bibtex_nce_discrete_tasknn_reverse.jsonnet --include-package=structured_prediction_baselines --wandb_project=structured_prediction_baselines --wandb_entity=jongsong --wandb_run_name=seal --wandb_project structured_prediction_baselines --wandb_entity jongsong --wandb_tags=baselines, as_reported 이렇게 띄우면  param_path가 필요하다고 
+
 4. Running hyperparameter sweeps
 
     1. Create a sweep using a sweep config file. See `sweep_configs` directory for examples. Refer sweeps documentation [here](https://docs.wandb.ai/sweeps).
 
     ```
-    wandb sweep -e score-based-learning -p baselines sweep_configs/path/to/config.yaml #여기서 -e를 내 id로 설정해야 함
+    wandb sweep -e score-based-learning -p baselines sweep_configs/path/to/config.yaml -> 여기서 -e를 내 id로
 
     < you will see an alpha numeric sweep_id as output here. Copy it.>
     ```
@@ -77,6 +78,7 @@ pip install wandb_allennlp
     export TEST=0
     python slurm_wandb_agent.py <sweep_id> -p baselines -e score-based-learning --num-jobs 5 -f --edit-sbatch --edit-srun
     ```
+    -> ValueError: --wandb_tags="task=mlc,model=dvn,sampler=inference_net,dataset=cal500,inference_module=inference_net,inference_module=tasknn,sampler=tasknn,ref=7tvr5xhg" not in valid form. 에러가 뜸
 
     You can use `squeue` to see the running agents on nodes. You can rerun this command to start more agents.
 
